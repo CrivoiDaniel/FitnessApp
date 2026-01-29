@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="FitnessApp.Domain/FitnessApp.Domain.csproj" />
+  <Project Path="FitnessApp.Test/FitnessApp.Test.csproj" Id="d0c2d391-42a2-47ce-8bdc-84c0d57ee6d9" />
+</Solution>
