@@ -1,4 +1,4 @@
-﻿namespace FitnessApp.Domainn;
+﻿namespace FitnessApp.Domain;
 
 public class Class1
 {

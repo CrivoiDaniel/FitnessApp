@@ -4,9 +4,9 @@ using System.Text;
 
 namespace FitnessApp.Domain.Entities
 {
-    public class Admin : User
+    public class AdminUser : User
     {
-        public Admin(int id, string name, string email) : base(id, name, email){}
+        public AdminUser(int id, string name, string email) : base(id, name, email){}
 
         public override string getDetails() => $"[Admin] {Name}, Permisiuni: System Maintenance";
 

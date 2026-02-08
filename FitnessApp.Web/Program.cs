@@ -3,17 +3,43 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Citim string-ul de conexiune
+// 1. Configurare CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+// 2. Configurare Bază de Date MySQL
 var connectionString = builder.Configuration.GetConnectionString("Default");
 
-// 2. AICI ERA EROAREA (trebuie ServerVersion.AutoDetect)
-builder.Services.AddDbContext<AppDBContext>(options => 
+builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-// 3. ȘI AICI ERA EROAREA (lipseau parantezele)
+// 3. Suport pentru Controlleri și Views
 builder.Services.AddControllersWithViews(); 
 
 var app = builder.Build();
 
-// ... restul configurărilor (app.UseRouting, app.MapControllerRoute etc.)
+// --- PIPELINE MIDDLEWARE ---
+
+app.UseStaticFiles(); // Permite fișiere CSS/JS dacă ai
+app.UseRouting();
+
+// ACTIVARE CORS - Fix între Routing și Authorization
+app.UseCors("AllowReactApp"); 
+
+app.UseAuthorization();
+
+// Mapare Rute API și MVC
+app.MapControllers(); 
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.Run();

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../FitnessApp.Domainn/FitnessApp.Domain.csproj" />
+    <ProjectReference Include="../FitnessApp.Domain/FitnessApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>

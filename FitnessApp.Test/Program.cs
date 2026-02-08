@@ -17,7 +17,7 @@ namespace FitnessApp.ConsoleTest
             {
                 new Client(101, "Ion Popescu", "ion@yahoo.com", "Abonament Premium"),
                 new Trainer(201, "Alex Antrenorul", "alex.fit@gym.com", "CrossFit & Yoga"),
-                new Admin(301, "Elena Admin", "admin@gym.com")
+                new AdminUser(301, "Elena Admin", "admin@gym.com")
             };
 
             foreach (var user in gymUsers)
@@ -31,7 +31,7 @@ namespace FitnessApp.ConsoleTest
             var trainer = (Trainer)gymUsers[1];
             trainer.setAvailability("18:00 - 20:00");
 
-            var admin = (Admin)gymUsers[2];
+            var admin = (AdminUser)gymUsers[2];
             admin.manageEquipment("Banda de alergat nr. 5", "In Reparatie");
 
             gymManager.RegisterClient(client);
